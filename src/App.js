@@ -35,5 +35,5 @@ function App() {
 
 export default App;
 
-// help from Jon Taylor (facilitator) with routing and rendering the welcome component properly
+// help from Jon Taylor (facilitator) with routing and rendering the Welcome component properly
 // help with using <Switch> from https://teamtreehouse.com/library/displaying-404-error-routes-using-switch - video transcript
