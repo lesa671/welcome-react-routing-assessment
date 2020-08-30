@@ -8,6 +8,7 @@ class Jeopardy extends Component {
         super(props);
         this.client = new JeopardyService();
         this.state = {
+            submitted: false,
             data: {
                 "id": null,
                 "answer": "",
@@ -27,7 +28,8 @@ class Jeopardy extends Component {
                     "clues_count": null
                 }
             },
-            score: 0
+            score: 0,
+            guess: ''
         }
     }
 
@@ -43,29 +45,148 @@ class Jeopardy extends Component {
     componentDidMount() {
         this.getNewQuestion();
     }
+
+
+    handleGuess = (event) => {
+        let guess = this.state.guess
+        guess = event.target.value
+
+        this.setState({ guess })
+    };
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            submitted: true,
+        });
+    };
+
+    resetFormRight = (event) => {
+        this.setState({
+            submitted: false,
+            data: {
+                "id": null,
+                "answer": "",
+                "question": "",
+                "value": null,
+                "airdate": "",
+                "created_at": "",
+                "updated_at": "",
+                "category_id": null,
+                "game_id": null,
+                "invalid_count": null,
+                "category": {
+                    "id": null,
+                    "title": "",
+                    "created_at": "",
+                    "updated_at": "",
+                    "clues_count": null
+                }
+            },
+            score: (this.state.score + this.state.data.value),
+            guess: ''
+        })
+        this.getNewQuestion()
+    };
+
+
+    resetFormWrong = (event) => {
+        this.setState({
+            submitted: false,
+            data: {
+                "id": null,
+                "answer": "",
+                "question": "",
+                "value": null,
+                "airdate": "",
+                "created_at": "",
+                "updated_at": "",
+                "category_id": null,
+                "game_id": null,
+                "invalid_count": null,
+                "category": {
+                    "id": null,
+                    "title": "",
+                    "created_at": "",
+                    "updated_at": "",
+                    "clues_count": null
+                }
+            },
+            score: (this.state.score - this.state.data.value),
+            guess: ''
+        })
+        this.getNewQuestion()
+    };
+
+
     //display the results on the screen
     render() {
+
+        if (this.state.submitted) {
+            if (this.state.guess == this.state.answer) {
+
+                return (
+                    <div>
+                        <div>
+                            <label htmlFor="answer">Answer</label>
+                            <input
+                                type="text"
+                                // answer=""
+                                value={this.state.data.answer}
+                            />
+                        </div>
+                        <p>
+                            Correct! That adds {this.state.data.value} points to your score.
+                        </p>
+                        <button onClick={this.resetFormRight}>Next Question</button>
+                    </div>
+                );
+
+            } else {
+
+                return (
+                    <div>
+                        <div>
+                            <label htmlFor="answer">Answer</label>
+                            <input
+                                type="text"
+                                // answer=""
+                                value={this.state.data.answer}
+                            />
+                        </div>
+                        <p>
+                            Sorry no. That subtracts {this.state.data.value} points from your score.
+                        </p>
+                        <button onClick={this.resetFormWrong}>Next Question</button>
+                    </div>
+                )
+            }
+        }
+
         return (
-            <div>
-                <strong>Score:</strong> {this.state.score}
-                <br />
-                <strong>Category:</strong> {this.state.data.category.title}
-                <br />
-                <strong>Question:</strong> {this.state.data.question}
-                <br />
-                <strong>Value:</strong> {this.state.data.value}
+            <div className='Jeopardy'>
+                <strong>Score:</strong> {this.state.score} <br />
+                <strong>Category:</strong> {this.state.data.category.title} <br />
+                <strong>Question:</strong> {this.state.data.question} <br />
+                <strong>Value:</strong> {this.state.data.value} <br />
+
+                <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label htmlFor='guess'>Your answer</label>
+                        <input
+                            type="text"
+                            guess='guess'
+                            value={this.state.guess}
+                            onChange={this.handleGuess}
+                        />
+                    </div>
+
+                    <button>Submit</button>
+
+                </form>
             </div>
-            // <div className="Jeopardy">
-            //     <form>
-            //         <label htmlFor="answer">Answer</label>
-            //         <input
-            //             type="text"
-            //             name="answer"
-            //             // value={this.state._____._____}
-            //             // onChange={this.handleChange}
-            //         />
-            //     </form>
-            // </div>
+
         );
     }
 }
