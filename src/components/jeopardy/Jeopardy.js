@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Display from '../display/Display'
 //import our service
 import JeopardyService from "../../jeopardyService";
 
@@ -125,7 +126,7 @@ class Jeopardy extends Component {
 
         if (this.state.submitted) {
             // if (this.state.guess == this.state.data.answer) {
-            if (this.state.data.answer.includes(this.state.guess)) {
+            if (this.state.data.answer.toLowerCase().includes(this.state.guess.toLowerCase())) {
 
                 return (
                     <div>
@@ -167,6 +168,7 @@ class Jeopardy extends Component {
 
         return (
             <div className='Jeopardy'>
+                <Display />
                 <strong>Score:</strong> {this.state.score} <br />
                 <strong>Category:</strong> {this.state.data.category.title} <br />
                 <strong>Question:</strong> {this.state.data.question} <br />
@@ -187,7 +189,6 @@ class Jeopardy extends Component {
 
                 </form>
             </div>
-
         );
     }
 }
