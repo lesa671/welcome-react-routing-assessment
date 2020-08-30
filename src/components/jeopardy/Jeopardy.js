@@ -62,7 +62,7 @@ class Jeopardy extends Component {
         });
     };
 
-    resetFormRight = (event) => {
+    resetFormRightAnswer = (event) => {
         this.setState({
             submitted: false,
             data: {
@@ -91,7 +91,7 @@ class Jeopardy extends Component {
     };
 
 
-    resetFormWrong = (event) => {
+    resetFormWrongAnswer = (event) => {
         this.setState({
             submitted: false,
             data: {
@@ -124,7 +124,8 @@ class Jeopardy extends Component {
     render() {
 
         if (this.state.submitted) {
-            if (this.state.guess == this.state.answer) {
+            // if (this.state.guess == this.state.data.answer) {
+            if (this.state.data.answer.includes(this.state.guess)) {
 
                 return (
                     <div>
@@ -132,14 +133,14 @@ class Jeopardy extends Component {
                             <label htmlFor="answer">Answer</label>
                             <input
                                 type="text"
-                                // answer=""
+                                answer='answer'
                                 value={this.state.data.answer}
                             />
                         </div>
                         <p>
                             Correct! That adds {this.state.data.value} points to your score.
                         </p>
-                        <button onClick={this.resetFormRight}>Next Question</button>
+                        <button onClick={this.resetFormRightAnswer}>Next Question</button>
                     </div>
                 );
 
@@ -151,14 +152,14 @@ class Jeopardy extends Component {
                             <label htmlFor="answer">Answer</label>
                             <input
                                 type="text"
-                                // answer=""
+                                answer='answer'
                                 value={this.state.data.answer}
                             />
                         </div>
                         <p>
                             Sorry no. That subtracts {this.state.data.value} points from your score.
                         </p>
-                        <button onClick={this.resetFormWrong}>Next Question</button>
+                        <button onClick={this.resetFormWrongAnswer}>Next Question</button>
                     </div>
                 )
             }
@@ -192,3 +193,5 @@ class Jeopardy extends Component {
 }
 
 export default Jeopardy;
+
+// Help from Eric Schwartz demo
