@@ -125,7 +125,7 @@ class Jeopardy extends Component {
     render() {
 
         if (this.state.submitted) {
-            // if (this.state.guess == this.state.data.answer) {
+            
             if (this.state.data.answer.toLowerCase().includes(this.state.guess.toLowerCase())) {
 
                 return (
@@ -169,7 +169,7 @@ class Jeopardy extends Component {
         return (
             <div className='Jeopardy'>
                 <Display />
-                <strong>Score:</strong> {this.state.score} <br />
+                {/* <strong>Score:</strong> {this.state.score} <br />
                 <strong>Category:</strong> {this.state.data.category.title} <br />
                 <strong>Question:</strong> {this.state.data.question} <br />
                 <strong>Value:</strong> {this.state.data.value} <br />
@@ -187,7 +187,7 @@ class Jeopardy extends Component {
 
                     <button>Submit</button>
 
-                </form>
+                </form> */}
             </div>
         );
     }
