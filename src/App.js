@@ -7,6 +7,7 @@ import Contact from './components/contact/Contact';
 import Navigation from './/components/navigation/Navigation'
 import NoMatch from './components/noMatch/NoMatch'
 import Jeopardy from './components/jeopardy/Jeopardy';
+import Display from './components/display/Display'
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
         <Route path='/contact' component={Contact} />
 
         <Route path='/jeopardy' component={Jeopardy} />
+
+        <Route path ='/display' component={Display} /> 
 
         <Route component={NoMatch} />
       </Switch>

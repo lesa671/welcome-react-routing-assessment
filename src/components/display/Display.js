@@ -8,7 +8,7 @@ function Display(props) {
         return (
             < div className="Display" >
                 <strong>Score:</strong> {props.score} <br />
-                <strong>Category:</strong> {props.data.category.title} <br />
+                <strong>Category:</strong> {category} <br />
                 <strong>Question:</strong> {props.data.question} <br />
                 <strong>Value:</strong> {props.data.value} <br />
 
