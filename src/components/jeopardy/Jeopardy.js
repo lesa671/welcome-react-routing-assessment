@@ -124,10 +124,9 @@ class Jeopardy extends Component {
     //display the results on the screen
     render() {
 
-        if (this.state.submitted) {
-            
-            if (this.state.data.answer.toLowerCase().includes(this.state.guess.toLowerCase())) {
+        if (this.state.submitted && this.state.guess) {
 
+            if (this.state.data.answer.toLowerCase().includes(this.state.guess.toLowerCase())) {
                 return (
                     <div>
                         <div>
@@ -136,6 +135,7 @@ class Jeopardy extends Component {
                                 type="text"
                                 answer='answer'
                                 value={this.state.data.answer}
+                                readOnly
                             />
                         </div>
                         <p>
@@ -148,6 +148,7 @@ class Jeopardy extends Component {
             } else {
 
                 return (
+                    
                     <div>
                         <div>
                             <label htmlFor="answer">Answer</label>
@@ -155,12 +156,14 @@ class Jeopardy extends Component {
                                 type="text"
                                 answer='answer'
                                 value={this.state.data.answer}
+                                readOnly
                             />
                         </div>
                         <p>
                             Sorry no. That subtracts {this.state.data.value} points from your score.
                         </p>
                         <button onClick={this.resetFormWrongAnswer}>Next Question</button>
+                        
                     </div>
                 )
             }
@@ -168,7 +171,16 @@ class Jeopardy extends Component {
 
         return (
             <div className='Jeopardy'>
-                <Display />
+                <Display
+                    data={this.state.data}
+                    score={this.state.score}
+                    category={this.state.category}
+                    question={this.state.data.question}
+                    pointValue={this.state.data.value}
+                    handleSubmit={this.handleSubmit}
+                    value={this.guess}
+                    handleGuess={this.handleGuess}
+                />
                 {/* <strong>Score:</strong> {this.state.score} <br />
                 <strong>Category:</strong> {this.state.data.category.title} <br />
                 <strong>Question:</strong> {this.state.data.question} <br />
@@ -195,4 +207,4 @@ class Jeopardy extends Component {
 
 export default Jeopardy;
 
-// Help from Eric Schwartz demo
+// Help from Eric Schwartz's demo and Jon Taylor facilitator
