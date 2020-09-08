@@ -117,6 +117,7 @@ class Jeopardy extends Component {
             score: (this.state.score - this.state.data.value),
             guess: ''
         })
+
         this.getNewQuestion()
     };
 
@@ -141,6 +142,7 @@ class Jeopardy extends Component {
                         <p>
                             Correct! That adds {this.state.data.value} points to your score.
                         </p>
+
                         <button onClick={this.resetFormRightAnswer}>Next Question</button>
                     </div>
                 );
@@ -148,7 +150,6 @@ class Jeopardy extends Component {
             } else {
 
                 return (
-                    
                     <div>
                         <div>
                             <label htmlFor="answer">Answer</label>
@@ -162,8 +163,8 @@ class Jeopardy extends Component {
                         <p>
                             Sorry no. That subtracts {this.state.data.value} points from your score.
                         </p>
+
                         <button onClick={this.resetFormWrongAnswer}>Next Question</button>
-                        
                     </div>
                 )
             }
