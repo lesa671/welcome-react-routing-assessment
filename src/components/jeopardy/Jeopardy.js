@@ -127,18 +127,21 @@ class Jeopardy extends Component {
 
         if (this.state.submitted && this.state.guess) {
 
-            if (this.state.data.answer.toLowerCase().includes(this.state.guess.toLowerCase())) {
+            if (this.state.data.answer.toLowerCase().includes((this.state.guess.toLowerCase()))) {
                 return (
                     <div>
                         <div>
-                            <label htmlFor="answer">Answer</label>
+                            <label htmlFor="answer">You wrote</label>
                             <input
                                 type="text"
-                                answer='answer'
-                                value={this.state.data.answer}
+                                answer="answer"
+                                value={this.state.guess}
                                 readOnly
                             />
                         </div>
+                        <p>
+                            <strong>Answer:</strong> {this.state.data.answer}
+                        </p>
                         <p>
                             Correct! That adds {this.state.data.value} points to your score.
                         </p>
@@ -152,14 +155,17 @@ class Jeopardy extends Component {
                 return (
                     <div>
                         <div>
-                            <label htmlFor="answer">Answer</label>
+                            <label htmlFor="answer">You wrote</label>
                             <input
                                 type="text"
-                                answer='answer'
-                                value={this.state.data.answer}
+                                answer="answer"
+                                value={this.state.guess}
                                 readOnly
                             />
                         </div>
+                        <p>
+                            <strong>Answer:</strong> {this.state.data.answer}
+                        </p>
                         <p>
                             Sorry no. That subtracts {this.state.data.value} points from your score.
                         </p>
@@ -171,7 +177,7 @@ class Jeopardy extends Component {
         }
 
         return (
-            <div className='Jeopardy'>
+            <div className='Jeopardy' >
                 <Display
                     data={this.state.data}
                     score={this.state.score}
@@ -182,25 +188,6 @@ class Jeopardy extends Component {
                     value={this.guess}
                     handleGuess={this.handleGuess}
                 />
-                {/* <strong>Score:</strong> {this.state.score} <br />
-                <strong>Category:</strong> {this.state.data.category.title} <br />
-                <strong>Question:</strong> {this.state.data.question} <br />
-                <strong>Value:</strong> {this.state.data.value} <br />
-
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label htmlFor='guess'>Your answer</label>
-                        <input
-                            type="text"
-                            guess='guess'
-                            value={this.state.guess}
-                            onChange={this.handleGuess}
-                        />
-                    </div>
-
-                    <button>Submit</button>
-
-                </form> */}
             </div>
         );
     }
